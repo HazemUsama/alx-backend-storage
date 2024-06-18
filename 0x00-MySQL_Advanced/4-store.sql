@@ -1,4 +1,5 @@
--- creates a trigger that decreases the quantity of an item after adding a new order
+-- Creates a trigger that decreases the quantity of an item after adding a new order
+
 CREATE TRIGGER buy
 AFTER INSERT ON orders
 FOR EACH ROW

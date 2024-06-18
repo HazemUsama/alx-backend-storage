@@ -1,4 +1,5 @@
 -- Resets the attribute valid_email only when the email has been changed.
+
 DELIMITER !!
 
 CREATE TRIGGER no_validation

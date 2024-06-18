@@ -1,4 +1,5 @@
--- computes and store the average score for a student
+-- Computes and store the average score for a student
+
 DELIMITER !!
 
 CREATE PROCEDURE ComputeAverageScoreForUser (IN student_id INT)
