@@ -6,7 +6,7 @@ DELIMITER !!
 CREATE FUNCTION SafeDiv (
   first INT,
   second INT
-) RETURNS INT
+) RETURNS FLOAT
 BEGIN
   IF second = 0 THEN
     RETURN 0;
