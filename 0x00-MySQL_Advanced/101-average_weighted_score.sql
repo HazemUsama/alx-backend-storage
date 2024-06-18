@@ -10,7 +10,7 @@ BEGIN
   JOIN (
     SELECT user_id, SUM(score * weight) / SUM(weight) AS weighted_score
     FROM corrections
-    JOIN projects ON corrections.project_id = projects.user_id
+    JOIN projects ON corrections.project_id = projects.id
     GROUP BY user_id
   ) AS c ON u.id = c.user_id
   SET u.average_score = c.weighted_score;
