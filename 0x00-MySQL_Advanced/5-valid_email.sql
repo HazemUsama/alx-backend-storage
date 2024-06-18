@@ -1,4 +1,4 @@
--- Resets the attribute valid_email only when the email has been changed.
+-- Resets the attribute valid_email only when the email has been changed
 
 DELIMITER !!
 
