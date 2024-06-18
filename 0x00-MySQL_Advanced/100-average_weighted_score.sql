@@ -10,8 +10,7 @@ BEGIN
   SELECT weighted_score = SUM(score * weight) / SUM(weight)
   FROM corrections
   JOIN projects ON corrections.project_id = projects.id
-  WHERE corrections.user_id = user_id
-  GROUP BY corrections.user_id;
+  WHERE corrections.user_id = user_id;
 
   UPDATE users
   SET average_score = weighted_score
