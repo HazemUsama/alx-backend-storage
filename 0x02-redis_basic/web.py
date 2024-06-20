@@ -12,14 +12,15 @@ def count_requests(method: Callable) -> Callable:
     """Decorator to count requests"""
     @wraps(method)
     def wrapper(url):
-        """Wrapper function"""
+        """ Wrapper for decorator """
         r.incr(f"count:{url}")
-        result = r.get(f"cached:{url}")
-        if result:
-            return result.decode('utf-8')
-        result = method(url)
-        r.setex(f"cached:{url}", 10, result)
-        return result
+        cached_html = r.get(f"cached:{url}")
+        if cached_html:
+            return cached_html.decode('utf-8')
+        html = method(url)
+        r.setex(f"cached:{url}", 10, html)
+        return html
+
     return wrapper
 
 
