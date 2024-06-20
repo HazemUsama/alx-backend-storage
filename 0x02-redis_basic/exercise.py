@@ -26,3 +26,13 @@ class Cache:
         if fn:
             return fn(data)
         return data
+
+    def get_str(self, key: str) -> str:
+        """Get string from redis"""
+        date = self._redis.get(key).decode('utf-8')
+        return date
+
+    def get_int(self, key: str) -> int:
+        """Get integer from redis"""
+        date = int(self._redis.get(key).decode('utf-8'))
+        return date
