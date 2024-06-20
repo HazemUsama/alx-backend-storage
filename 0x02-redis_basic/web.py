@@ -2,7 +2,7 @@
 """Implementing an expiring web cache and tracker"""
 import redis
 import requests
-from funtools import wraps
+from functools import wraps
 from typing import Callable
 
 r = redis.Redis()
