@@ -17,7 +17,8 @@ def count_requests(method: Callable) -> Callable:
         result = r.get(url)
         if result:
             return result.decode('utf-8')
-        result = method(url) r.setex(url, 10, result)
+        result = method(url)
+        r.setex(url, 10, result)
         return result
     return wrapper
 
