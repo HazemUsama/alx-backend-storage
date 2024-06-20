@@ -11,14 +11,13 @@ r = redis.Redis()
 def count_requests(method: Callable) -> Callable:
     """Decorator to count requests"""
     @wraps(method)
-    def wrapper(self, url):
+    def wrapper(url):
         """Wrapper function"""
         r.incr(f"count:{url}")
         result = r.get(url)
         if result:
             return result.decode('utf-8')
-        result = method(self, url)
-        r.setex(url, 10, result)
+        result = method(url) r.setex(url, 10, result)
         return result
     return wrapper
 
