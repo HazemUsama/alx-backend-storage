@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Implementing an expiring web cache and tracker"""
+from functools import wraps
 import redis
 import requests
-from functools import wraps
 from typing import Callable
-from time import sleep
 
 
 client = redis.Redis()
+
 
 def count_requests(method: Callable) -> Callable:
     """Decorator to count requests"""
