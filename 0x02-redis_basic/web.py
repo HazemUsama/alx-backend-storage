@@ -4,8 +4,8 @@ import redis
 import requests
 from functools import wraps
 from typing import Callable
+from time import sleep
 
-r = redis.Redis()
 
 
 def count_requests(method: Callable) -> Callable:
@@ -13,12 +13,13 @@ def count_requests(method: Callable) -> Callable:
     @wraps(method)
     def wrapper(url):
         """ Wrapper for decorator """
-        r.incr(f"count:{url}")
-        cached_html = r.get(f"cached:{url}")
+        client = redis.Redis()
+        client.incr(f"count:{url}")
+        cached_html = client.get(f"cached:{url}")
         if cached_html:
             return cached_html.decode('utf-8')
         html = method(url)
-        r.setex(f"cached:{url}", 10, html)
+        client.set(f"cached:{url}", html, 10)
         return html
 
     return wrapper
